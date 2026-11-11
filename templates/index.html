@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditorio Plata | Concierto Navideño</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Georgia, serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #fff8eb;
+            color: #302019;
+        }
+
+        /* ENCABEZADO */
+        header {
+            background: #650d12;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            border-bottom: 3px solid #d8ad51;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+            color: #f5d17b;
+        }
+
+        .logo span {
+            display: block;
+            font-size: 13px;
+            letter-spacing: 5px;
+            text-align: center;
+            color: white;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 17px;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #f5d17b;
+        }
+
+        /* PORTADA */
+        .principal {
+            min-height: 510px;
+            padding: 75px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(circle at 15% 20%, #a52b20 0%, transparent 30%),
+                linear-gradient(135deg, #160e20, #173d31 60%, #4b1014);
+            color: white;
+        }
+
+        .principal::before {
+            content: "❄       ✨       ❄        ✨       ❄";
+            position: absolute;
+            top: 25px;
+            width: 100%;
+            color: #f5d17b;
+            font-size: 25px;
+            letter-spacing: 15px;
+        }
+
+        .contenido-principal {
+            position: relative;
+            max-width: 850px;
+            z-index: 1;
+        }
+
+        .etiqueta {
+            color: #f5d17b;
+            letter-spacing: 5px;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .principal h1 {
+            font-size: clamp(38px, 7vw, 72px);
+            color: #f6d17b;
+            margin-bottom: 15px;
+            text-shadow: 2px 3px 8px #000;
+        }
+
+        .principal h2 {
+            font-size: clamp(27px, 4vw, 42px);
+            margin-bottom: 20px;
+        }
+
+        .principal p {
+            font-size: 19px;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        .decoracion {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        /* BOTONES */
+        .boton {
+            display: inline-block;
+            padding: 16px 35px;
+            background: linear-gradient(135deg, #ffe08a, #d5a43d);
+            color: #491016;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 40px;
+            box-shadow: 0 5px 15px #0005;
+            transition: .3s;
+        }
+
+        .boton:hover {
+            transform: translateY(-4px);
+            background: #fff0bd;
+        }
+
+        /* INFORMACIÓN */
+        .informacion {
+            padding: 65px 8%;
+            text-align: center;
+            background: #fff8eb;
+        }
+
+        .informacion h2 {
+            font-size: 34px;
+            color: #17422f;
+            margin-bottom: 15px;
+        }
+
+        .subtitulo {
+            color: #896d50;
+            margin-bottom: 40px;
+            font-size: 17px;
+        }
+
+        .tarjetas {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tarjeta {
+            background: white;
+            width: 290px;
+            padding: 32px 20px;
+            border-radius: 15px;
+            border: 1px solid #ead3a8;
+            box-shadow: 0 5px 15px #603b1b12;
+            transition: .3s;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 10px 20px #603b1b25;
+        }
+
+        .icono {
+            font-size: 43px;
+            margin-bottom: 18px;
+        }
+
+        .tarjeta h3 {
+            color: #9a1d22;
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .tarjeta p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        /* BOLETOS */
+        .boletos {
+            padding: 65px 8%;
+            text-align: center;
+            background:
+                radial-gradient(circle at 15% 50%, #a52b20, transparent 35%),
+                linear-gradient(120deg, #5b0b11, #8e171b, #4b1014);
+            color: white;
+        }
+
+        .boletos h2 {
+            font-size: 40px;
+            color: #f5d17b;
+            margin-bottom: 20px;
+        }
+
+        .boletos p {
+            font-size: 19px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .boletos .boton {
+            margin-top: 5px;
+        }
+
+        /* PIE DE PÁGINA */
+        footer {
+            background: #123b2b;
+            color: white;
+            text-align: center;
+            padding: 28px 15px;
+            border-top: 3px solid #d8ad51;
+        }
+
+        footer p {
+            margin: 8px;
+        }
+
+        .adornos {
+            color: #e9c36e;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        /* CELULARES */
+        @media(max-width: 650px) {
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+
+            nav {
+                text-align: center;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 8px;
+            }
+
+            .principal {
+                padding: 75px 20px;
+            }
+
+            .informacion {
+                padding: 45px 15px;
+            }
+
+            .tarjeta {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <div class="logo">
+            🎄 AUDITORIO PLATA
+            <span>EVENTOS ESPECIALES</span>
+        </div>
+
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#evento">Evento</a>
+            <a href="#boletos">Boletos</a>
+        </nav>
+    </header>
+
+    <!-- PORTADA -->
+    <section class="principal" id="inicio">
+
+        <div class="contenido-principal">
+
+            <div class="decoracion">🎄 ❄️ ✨ ❄️ 🎄</div>
+
+            <div class="etiqueta">UNA TEMPORADA PARA COMPARTIR</div>
+
+            <h1>Auditorio Plata</h1>
+
+            <h2>Concierto Navideño</h2>
+
+            <p>
+                Celebra la magia de la Navidad con nosotros.
+                Disfruta de una experiencia inolvidable
+                llena de música, alegría y espíritu navideño.
+            </p>
+
+            <a href="/solicitar" class="boton">
+                🎟 Solicitar boleto
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- INFORMACIÓN DEL EVENTO -->
+    <section class="informacion" id="evento">
+
+        <h2>✨ Información del evento ✨</h2>
+
+        <p class="subtitulo">
+            Todo lo que necesitas saber para acompañarnos.
+        </p>
+
+        <div class="tarjetas">
+
+            <div class="tarjeta">
+                <div class="icono">🎶</div>
+                <h3>Evento</h3>
+                <p>Concierto Navideño</p>
+            </div>
+
+            <div class="tarjeta">
+                <div class="icono">👥</div>
+                <h3>Capacidad</h3>
+                <p>20,000 personas</p>
+            </div>
+
+            <div class="tarjeta">
+                <div class="icono">🎁</div>
+                <h3>Acceso</h3>
+                <p>Boletos completamente gratuitos</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SOLICITUD DE BOLETOS -->
+    <section class="boletos" id="boletos">
+
+        <div class="decoracion">🎅 🎄 🎁</div>
+
+        <h2>¡La Navidad se vive en Auditorio Plata!</h2>
+
+        <p>
+            Forma parte de nuestro Concierto Navideño.
+            <br>
+            ¡Solicita tu boleto y disfruta de este gran evento!
+            <br>
+            El acceso es completamente gratuito.
+        </p>
+
+        <a href="#inicio" class="boton">
+            🎟 Solicitar boleto
+        </a>
+
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+
+        <div class="adornos">
+            ❄️ ✨ 🎄 ✨ ❄️
+        </div>
+
+        <p>© 2026 Auditorio Plata</p>
+
+        <p>Sistema de gestión de boletos</p>
+
+        <p>¡Felices fiestas! 🎅</p>
+
+    </footer>
+
+</body>
+</html>

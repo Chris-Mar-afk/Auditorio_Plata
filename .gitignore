@@ -1,0 +1,17 @@
+
+# Proteger contrasenas y configuracion privada
+.env
+
+# Archivos generados
+boletos/
+__pycache__/
+*.pyc
+
+# Entornos virtuales
+venv/
+env/
+.venv/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db

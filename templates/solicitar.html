@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Solicitar boletos - Auditorio Plata</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px 15px;
+            font-family: Arial, sans-serif;
+            background: #102b24;
+            color: white;
+        }
+
+        .contenedor {
+            max-width: 550px;
+            margin: auto;
+            padding: 30px;
+            background: #ffffff;
+            color: #222;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #174c38;
+        }
+
+        .descripcion {
+            text-align: center;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 7px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 25px;
+            border: none;
+            border-radius: 6px;
+            background: #174c38;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #236b4e;
+        }
+
+        .mensaje {
+            padding: 15px;
+            margin-top: 20px;
+            background: #e2f5e9;
+            color: #155724;
+            border-radius: 6px;
+        }
+
+        .error {
+            padding: 15px;
+            margin-top: 20px;
+            background: #f8d7da;
+            color: #721c24;
+            border-radius: 6px;
+        }
+
+        .descargas {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f4f0df;
+            border-radius: 8px;
+        }
+
+        .descargas a {
+            display: block;
+            margin-top: 10px;
+            padding: 12px;
+            background: #174c38;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 6px;
+        }
+
+        .descargas a:hover {
+            background: #236b4e;
+        }
+
+        .volver {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #174c38;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>🎄 Auditorio Plata 🎄</h1>
+
+        <p class="descripcion">
+            Solicitud de boletos para el concierto navideño
+        </p>
+
+        <form action="{{ url_for('solicitar') }}" method="POST">
+
+            <label for="nombre">Nombre completo:</label>
+            <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                maxlength="100"
+                required
+                value="{{ datos.nombre if datos else '' }}"
+            >
+
+            <label for="correo">Correo electrónico:</label>
+            <input
+                type="email"
+                id="correo"
+                name="correo"
+                required
+                value="{{ datos.correo if datos else '' }}"
+            >
+
+            <label for="telefono">Teléfono:</label>
+            <input
+                type="tel"
+                id="telefono"
+                name="telefono"
+                required
+                value="{{ datos.telefono if datos else '' }}"
+            >
+
+            <label for="cantidad">Cantidad de boletos:</label>
+            <input
+                type="number"
+                id="cantidad"
+                name="cantidad"
+                min="1"
+                max="20000"
+                required
+                value="{{ datos.cantidad if datos else '' }}"
+            >
+
+            <button type="submit">
+                🎟 Solicitar boletos
+            </button>
+
+        </form>
+
+        {% if mensaje %}
+
+            <div class="mensaje">
+                {{ mensaje }}
+            </div>
+
+            {% if archivos_pdf %}
+
+                <div class="descargas">
+
+                    <h3>🎟 Descargar tus boletos</h3>
+
+                    {% for archivo in archivos_pdf %}
+
+                        <a href="{{ url_for('descargar_boleto', nombre_archivo=archivo) }}">
+                            Descargar boleto {{ loop.index }} (PDF)
+                        </a>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+        {% endif %}
+
+        {% if error %}
+
+            <div class="error">
+                {{ error }}
+            </div>
+
+        {% endif %}
+
+        <a class="volver" href="{{ url_for('inicio') }}">
+            Volver al inicio
+        </a>
+
+    </div>
+
+</body>
+</html>
